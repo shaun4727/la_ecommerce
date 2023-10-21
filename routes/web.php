@@ -108,6 +108,7 @@ Route::prefix('subcategory')->group(function(){
     // all admin child category routes
     Route::get('/childrenCategory/view',[SubCategoryController::class, 'childrenCategoryView'])->name('all.childCategory');
     Route::get('/subcategory/ajax/{category_id}',[SubCategoryController::class, 'GetSubCategory'])->name('get.all.childCategory');
+    Route::get('/child_subcategory/ajax/{subcategory_id}',[SubCategoryController::class, 'GetChildSubCategory'])->name('get.all.childCategory');
     Route::post('/subcategory/store',[SubCategoryController::class, 'SubCategoryChildStore'])->name('childSubCategory.store');
     Route::get('childSub/edit/{id}',[SubCategoryController::class, 'SubCategoryChildEdit'])->name('subcategoryChild.edit');
     Route::post('childSub/update',[SubCategoryController::class, 'childSubCategoryUpdate'])->name('childSubcategory.update');
@@ -118,4 +119,5 @@ Route::prefix('subcategory')->group(function(){
 // all admin brand routes
 Route::prefix('product')->group(function(){
     Route::get('/add',[ProductController::class, 'AddProduct'])->name('add.product');
+    Route::post('/store',[ProductController::class, 'storeProduct'])->name('product.store');
 });

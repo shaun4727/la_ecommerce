@@ -71,6 +71,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
 
 
+    <script src="{{ asset('../assets/vendor_components/ckeditor/ckeditor.js') }}"></script>
+	<script src="{{ asset('../assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js') }}"></script>
+	<script src="{{ asset('backend/js/pages/editor.js') }}"></script>
+
 
 </body>
 

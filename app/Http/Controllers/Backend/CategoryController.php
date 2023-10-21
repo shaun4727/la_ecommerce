@@ -55,6 +55,7 @@ class CategoryController extends Controller
             'category_name_ban' => $request->category_name_ban,
             'category_slug_en' => strtolower(str_replace(' ','-',$request->category_name_en)),
             'category_slug_ban' => strtolower(str_replace(' ','-',$request->category_slug_ban)),
+            'category_icon' => $request->category_icon
         ]);
 
 

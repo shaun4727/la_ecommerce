@@ -22,16 +22,17 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Subcategory ID</th>
+                                        <th>Category</th>
                                         <th>Subcategory Eng</th>
                                         <th>Subcategory Ban</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     @foreach ($subcategories as $subcategory)
                                         <tr>
-                                            <td>{{ $subcategory->category_id }}</td>
+                                            <td>{{ $subcategory['category']['category_name_en'] }}</td>
                                             <td>{{ $subcategory->subcategory_name_en }}</td>
                                             <td>{{ $subcategory->subcategory_name_ban }}</td>
                                             <td>
