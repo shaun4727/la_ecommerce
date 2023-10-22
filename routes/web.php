@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SliderController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use Illuminate\Support\Facades\Auth;
@@ -120,4 +121,21 @@ Route::prefix('subcategory')->group(function(){
 Route::prefix('product')->group(function(){
     Route::get('/add',[ProductController::class, 'AddProduct'])->name('add.product');
     Route::post('/store',[ProductController::class, 'storeProduct'])->name('product.store');
+    Route::get('/manage',[ProductController::class, 'manageProduct'])->name('manage.product');
+    Route::get('/edit/{id}',[ProductController::class, 'productEdit'])->name('product.edit');
+    Route::post('/update',[ProductController::class, 'productUpdate'])->name('product.update');
+    Route::post('/image/update', [ProductController::class, 'MultiImageUpdate'])->name('update.product.image');
+    Route::post('/thumbnail/update', [ProductController::class, 'thumbnailImageUpdate'])->name('update.product.thumbnail');
+    Route::get('multiImg/delete/{id}',[ProductController::class, 'multiImgDelete'])->name('product.multiImg.delete');
+    Route::get('/delete/{id}',[ProductController::class, 'productDelete'])->name('product.delete');
+});
+
+
+// all admin slider routes
+Route::prefix('slider')->group(function(){
+    Route::get('/view',[SliderController::class, 'sliderView'])->name('manage.slider');
+    Route::post('/store',[SliderController::class, 'sliderStore'])->name('slider.store');
+    Route::get('/edit/{id}',[SliderController::class, 'sliderEdit'])->name('slider.edit');
+    Route::post('/update',[SliderController::class, 'sliderUpdate'])->name('slider.update');
+    Route::get('/delete/{id}',[SliderController::class, 'sliderDelete'])->name('slider.delete');
 });
