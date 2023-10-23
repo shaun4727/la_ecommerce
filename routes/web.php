@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\LanguageController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -35,22 +36,25 @@ Route::middleware('admin:admin')->group(function () {
     Route::post('admin/login', [AdminController::class, 'store'])->name('admin.login');
 });
 
-Route::middleware([
-    'auth:sanctum,admin',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.index');
-    })->name('admin.dashboard')->middleware('auth:admin');
-});
 
-Route::get('/admin/logout',[AdminController::class,'destroy'])->name('admin.logout');
-Route::get('/admin/profile',[AdminProfileController::class,'AdminProfile'])->name('admin.profile');
-Route::get('/admin/profile/edit',[AdminProfileController::class,'AdminProfileEdit'])->name('admin.profile.edit');
-Route::post('/admin/profile/store',[AdminProfileController::class,'AdminProfileStore'])->name('admin.profile.store');
-Route::post('/admin/update/password',[AdminProfileController::class,'AdminUpdatePassword'])->name('update.admin.password');
-Route::get('/admin/change/password',[AdminProfileController::class,'AdminChangePassword'])->name('admin.change.password');
+Route::middleware(['auth:admin'])->group(function(){
+    Route::middleware([
+        'auth:sanctum,admin',
+        config('jetstream.auth_session'),
+        'verified'
+    ])->group(function () {
+        Route::get('/admin/dashboard', function () {
+            return view('admin.index');
+        })->name('admin.dashboard');
+    });
+
+    Route::get('/admin/logout',[AdminController::class,'destroy'])->name('admin.logout');
+    Route::get('/admin/profile',[AdminProfileController::class,'AdminProfile'])->name('admin.profile');
+    Route::get('/admin/profile/edit',[AdminProfileController::class,'AdminProfileEdit'])->name('admin.profile.edit');
+    Route::post('/admin/profile/store',[AdminProfileController::class,'AdminProfileStore'])->name('admin.profile.store');
+    Route::post('/admin/update/password',[AdminProfileController::class,'AdminUpdatePassword'])->name('update.admin.password');
+    Route::get('/admin/change/password',[AdminProfileController::class,'AdminChangePassword'])->name('admin.change.password');
+});
 // AdminController Ends
 
 Route::middleware([
@@ -139,3 +143,14 @@ Route::prefix('slider')->group(function(){
     Route::post('/update',[SliderController::class, 'sliderUpdate'])->name('slider.update');
     Route::get('/delete/{id}',[SliderController::class, 'sliderDelete'])->name('slider.delete');
 });
+
+
+
+
+
+
+
+// frontend all routes
+Route::get('/language/bangla',[LanguageController::class, 'bangla'])->name('bangla.language');
+Route::get('/language/english',[LanguageController::class, 'english'])->name('english.language');
+Route::get('/product/detail/{id}',[IndexController::class, 'productDetail'])->name('product.detail');
