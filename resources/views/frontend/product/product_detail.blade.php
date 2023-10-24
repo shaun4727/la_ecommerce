@@ -1,5 +1,9 @@
 @extends('frontend.master')
 
+@section('title')
+Product Detail
+@endsection
+
 @section('content')
 
 <div class="body-content outer-top-xs">
@@ -8,7 +12,7 @@
 			<div class='col-md-3 sidebar'>
 				<div class="sidebar-module-container">
 				<div class="home-banner outer-top-n">
-<img src="assets/images/banners/LHS-banner.jpg" alt="Image">
+<img src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}" alt="Image">
 </div>
 
 
@@ -248,19 +252,19 @@
 <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
 	<div id="advertisement" class="advertisement">
         <div class="item">
-            <div class="avatar"><img src="assets/images/testimonials/member1.png" alt="Image"></div>
+            <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member1.png') }}" alt="Image"></div>
 		<div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
 		<div class="clients_author">John Doe	<span>Abc Company</span>	</div><!-- /.container-fluid -->
         </div><!-- /.item -->
 
          <div class="item">
-         	<div class="avatar"><img src="assets/images/testimonials/member3.png" alt="Image"></div>
+         	<div class="avatar"><img src="asset('frontend/assets/images/testimonials/member3.png') }}" alt="Image"></div>
 		<div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
 		<div class="clients_author">Stephen Doe	<span>Xperia Designs</span>	</div>
         </div><!-- /.item -->
 
         <div class="item">
-            <div class="avatar"><img src="assets/images/testimonials/member2.png" alt="Image"></div>
+            <div class="avatar"><img src="{{ asset('frontend/assets/images/testimonials/member2.png') }}" alt="Image"></div>
 		<div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
 		<div class="clients_author">Saraha Smith	<span>Datsun &amp; Co</span>	</div><!-- /.container-fluid -->
         </div><!-- /.item -->
@@ -282,59 +286,13 @@
     <div class="product-item-holder size-big single-product-gallery small-gallery">
 
         <div id="owl-single-product">
-            <div class="single-product-gallery-item" id="slide1">
-                <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p8.jpg">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p8.jpg" />
+            @foreach($multiImgs as $img)
+            <div class="single-product-gallery-item" id="slide{{ $img->id }}">
+                <a data-lightbox="image-1" data-title="Gallery" href="{{ asset($img->photo_name) }}">
+                    <img class="img-responsive" alt="" src="{{ asset($img->photo_name) }}" data-echo="{{ asset($img->photo_name) }}" />
                 </a>
             </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide2">
-                <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p9.jpg">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p9.jpg" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide3">
-                <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p10.jpg">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p10.jpg" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide4">
-                <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p11.jpg">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p11.jpg" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide5">
-                <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p12.jpg">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p12.jpg" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide6">
-                <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p13.jpg">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p13.jpg" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide7">
-                <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p14.jpg">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p14.jpg" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide8">
-                <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p15.jpg">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p15.jpg" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide9">
-                <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p16.jpg">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p16.jpg" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
+            @endforeach
 
         </div><!-- /.single-product-slider -->
 
@@ -342,59 +300,13 @@
         <div class="single-product-gallery-thumbs gallery-thumbs">
 
             <div id="owl-single-product-thumbnails">
+                @foreach($multiImgs as $img)
                 <div class="item">
-                    <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide1">
-                        <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p17.jpg" />
+                    <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide{{ $img->id }}">
+                        <img class="img-responsive" width="85" alt="" src="{{ asset($img->photo_name) }}" data-echo="{{ asset($img->photo_name) }}" />
                     </a>
                 </div>
-
-                <div class="item">
-                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide2">
-                        <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p18.jpg"/>
-                    </a>
-                </div>
-                <div class="item">
-
-                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="3" href="#slide3">
-                        <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p19.jpg" />
-                    </a>
-                </div>
-                <div class="item">
-
-                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="4" href="#slide4">
-                        <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p20.jpg" />
-                    </a>
-                </div>
-                <div class="item">
-
-                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="5" href="#slide5">
-                        <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p21.jpg" />
-                    </a>
-                </div>
-                <div class="item">
-
-                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="6" href="#slide6">
-                        <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p22.jpg" />
-                    </a>
-                </div>
-                <div class="item">
-
-                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="7" href="#slide7">
-                        <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p23.jpg" />
-                    </a>
-                </div>
-                <div class="item">
-
-                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="8" href="#slide8">
-                        <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p24.jpg" />
-                    </a>
-                </div>
-                <div class="item">
-
-                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="9" href="#slide9">
-                        <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p25.jpg" />
-                    </a>
-                </div>
+                @endforeach
             </div><!-- /#owl-single-product-thumbnails -->
 
 
@@ -405,7 +317,7 @@
 </div><!-- /.gallery-holder -->
 					<div class='col-sm-6 col-md-7 product-info-block'>
 						<div class="product-info">
-							<h1 class="name">Floral Print Buttoned</h1>
+							<h1 class="name">{{ $product->product_name_en }}</h1>
 
 							<div class="rating-reviews m-t-20">
 								<div class="row">
@@ -436,7 +348,7 @@
 							</div><!-- /.stock-container -->
 
 							<div class="description-container m-t-20">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+								{{ $product->short_descp_en }}
 							</div><!-- /.description-container -->
 
 							<div class="price-container info-container m-t-20">
@@ -445,8 +357,12 @@
 
 									<div class="col-sm-6">
 										<div class="price-box">
-											<span class="price">$800.00</span>
-											<span class="price-strike">$900.00</span>
+                                            @if($product->discount_price != NULL)
+                                            <span class="price">${{ $product->discount_price }}</span>
+											<span class="price-strike">${{ $product->selling_price }}</span>
+                                            @else
+                                            <span class="price"> ${{ $product->selling_price }} </span>
+                                            @endif
 										</div>
 									</div>
 
@@ -519,7 +435,7 @@
 
 								<div id="description" class="tab-pane in active">
 									<div class="product-tab">
-										<p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+										<p class="text">{!! $product->long_descp_en !!}</p>
 									</div>
 								</div><!-- /.tab-pane -->
 
