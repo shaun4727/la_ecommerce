@@ -18,7 +18,53 @@ class IndexController extends Controller
         $categories = Category::orderBy('category_name_en','ASC')->get();
         $sliders = Slider::where('status',1)->get();
         $products = Product::where('status',1)->get();
-        return view('frontend.index',compact('categories','sliders','products'));
+        $sproducts = Product::where('special_offer',1)->get();
+        $dproducts = Product::where('special_deals',1)->get();
+
+
+
+        // constructing special offer data
+        $special_offer = array();
+        $sub_array = array();
+        $count = 0;
+        $index = 1;
+
+        foreach($sproducts as $product){
+            array_push($sub_array,$product);
+            if($count == 2){
+                $count = 0;
+                array_push($special_offer,$sub_array);
+                $sub_array = array();
+            }elseif($index == count($products)){
+                array_push($special_offer,$sub_array);
+            }
+
+            $count++;
+            $index++;
+        }
+
+        // constructing special deal data
+        $special_deal = array();
+        $count1 = 0;
+        $index1 = 1;
+        foreach($dproducts as $product){
+            array_push($sub_array,$product);
+            if($count1 == 2){
+                $count1 = 0;
+                array_push($special_deal,$sub_array);
+                $sub_array = array();
+            }elseif($index1 == count($products)){
+                array_push($special_deal,$sub_array);
+            }
+
+            $count1++;
+            $index1++;
+        }
+
+        // dd($special_deal);
+        // $special_deal = [];
+        // $special_offer = [];
+        return view('frontend.index',compact('categories','sliders','products','special_offer','special_deal'));
     }
 
     public function UserLogout(){
@@ -84,6 +130,7 @@ class IndexController extends Controller
     public function productDetail($id,$slug){
         $product = Product::findOrFail($id);
         $multiImgs = MultiImg::where('product_id',$id)->get();
+
 
         return view('frontend.product.product_detail',compact('product','multiImgs'));
     }

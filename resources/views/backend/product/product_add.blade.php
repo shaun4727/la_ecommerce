@@ -239,6 +239,10 @@
                                     <input type="checkbox" id="checkbox_3" value="1" name="featured">
                                     <label for="checkbox_3">Featured</label>
                                 </fieldset>
+                                <fieldset>
+                                    <input type="checkbox" id="checkbox_4" value="1" name="status" {{ $product->status == 1?'checked':'' }}>
+                                    <label for="checkbox_4">Status</label>
+                                </fieldset>
                             </div>
                         </div>
                     </div>
