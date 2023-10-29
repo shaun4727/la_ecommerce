@@ -12,51 +12,7 @@ Online Shop
         <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
 
           <!-- ================================== TOP NAVIGATION ================================== -->
-          <div class="side-menu animate-dropdown outer-bottom-xs">
-            <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Categories</div>
-            <nav class="yamm megamenu-horizontal">
-              <ul class="nav">
-
-                @foreach($categories as $category)
-                <li class="dropdown menu-item"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon {{ $category->category_icon }}" aria-hidden="true"></i>{{ $category->category_name_en }}</a>
-                  <ul class="dropdown-menu mega-menu">
-                    <li class="yamm-content">
-                      <div class="row">
-                        @php
-                            $subcategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('subcategory_name_en','ASC')->get();
-                        @endphp
-
-                        @foreach($subcategories as $subcategory)
-                        <div class="col-xs-12 col-sm-6 col-md-3 col-menu">
-                        <h2 class="title">{{ $subcategory->subcategory_name_en }}</h2>
-
-                        @php
-                            $childSubCategories = App\Models\ChildSubCategory::where('subcategory_id',$subcategory->id)->orderBy('childCategory_name_en','ASC')->get();
-                        @endphp
-
-                        <ul class="links">
-                            @foreach($childSubCategories as $childCategory)
-                            <li><a href="#">{{ $childCategory->childCategory_name_en }}</a></li>
-                            @endforeach
-                        </ul>
-                        </div>
-                        @endforeach
-                      </div>
-                      <!-- /.row -->
-                    </li>
-                    <!-- /.yamm-content -->
-                  </ul>
-                  @endforeach
-                  <!-- /.dropdown-menu --> </li>
-                <!-- /.menu-item -->
-
-                <!-- /.menu-item -->
-
-              </ul>
-              <!-- /.nav -->
-            </nav>
-            <!-- /.megamenu-horizontal -->
-          </div>
+            @include('frontend.common.sidebar_menu')
           <!-- /.side-menu -->
           <!-- ================================== TOP NAVIGATION : END ================================== -->
 
@@ -192,14 +148,7 @@ Online Shop
           <!-- /.sidebar-widget -->
           <!-- ============================================== SPECIAL OFFER : END ============================================== -->
           <!-- ============================================== PRODUCT TAGS ============================================== -->
-          <div class="sidebar-widget product-tag wow fadeInUp">
-            <h3 class="section-title">Product tags</h3>
-            <div class="sidebar-widget-body outer-top-xs">
-              <div class="tag-list"> <a class="item" title="Phone" href="category.html">Phone</a> <a class="item active" title="Vest" href="category.html">Vest</a> <a class="item" title="Smartphone" href="category.html">Smartphone</a> <a class="item" title="Furniture" href="category.html">Furniture</a> <a class="item" title="T-shirt" href="category.html">T-shirt</a> <a class="item" title="Sweatpants" href="category.html">Sweatpants</a> <a class="item" title="Sneaker" href="category.html">Sneaker</a> <a class="item" title="Toys" href="category.html">Toys</a> <a class="item" title="Rose" href="category.html">Rose</a> </div>
-              <!-- /.tag-list -->
-            </div>
-            <!-- /.sidebar-widget-body -->
-          </div>
+          @include('frontend.common.product_tags')
           <!-- /.sidebar-widget -->
           <!-- ============================================== PRODUCT TAGS : END ============================================== -->
           <!-- ============================================== SPECIAL DEALS ============================================== -->
@@ -278,38 +227,11 @@ Online Shop
           <!-- ============================================== NEWSLETTER: END ============================================== -->
 
           <!-- ============================================== Testimonials============================================== -->
-          <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
-            <div id="advertisement" class="advertisement">
-              <div class="item">
-                <div class="avatar"><img src="assets/images/testimonials/member1.png" alt="Image"></div>
-                <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                <div class="clients_author">John Doe <span>Abc Company</span> </div>
-                <!-- /.container-fluid -->
-              </div>
-              <!-- /.item -->
-
-              <div class="item">
-                <div class="avatar"><img src="assets/images/testimonials/member3.png" alt="Image"></div>
-                <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                <div class="clients_author">Stephen Doe <span>Xperia Designs</span> </div>
-              </div>
-              <!-- /.item -->
-
-              <div class="item">
-                <div class="avatar"><img src="assets/images/testimonials/member2.png" alt="Image"></div>
-                <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                <div class="clients_author">Saraha Smith <span>Datsun &amp; Co</span> </div>
-                <!-- /.container-fluid -->
-              </div>
-              <!-- /.item -->
-
-            </div>
-            <!-- /.owl-carousel -->
-          </div>
+          @include('frontend.common.testimonial')
 
           <!-- ============================================== Testimonials: END ============================================== -->
 
-          <div class="home-banner"> <img src="assets/images/banners/LHS-banner.jpg" alt="Image"> </div>
+          <div class="home-banner"> <img src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}" alt="Image"> </div>
         </div>
         <!-- /.sidemenu-holder -->
         <!-- ============================================== SIDEBAR : END ============================================== -->

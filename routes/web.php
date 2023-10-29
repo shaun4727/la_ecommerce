@@ -154,3 +154,4 @@ Route::prefix('slider')->group(function(){
 Route::get('/language/bangla',[LanguageController::class, 'bangla'])->name('bangla.language');
 Route::get('/language/english',[LanguageController::class, 'english'])->name('english.language');
 Route::get('/product/details/{id}/{slug}',[IndexController::class, 'productDetail']);
+Route::get('/product/details/{tag}',[IndexController::class, 'tagWiseProduct']);
