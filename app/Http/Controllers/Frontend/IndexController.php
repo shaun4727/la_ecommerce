@@ -138,10 +138,28 @@ class IndexController extends Controller
 
     public function tagWiseProduct($tag){
         // $products = DB::SELECT("SELECT * FROM PRODUCTS WHERE FIND_IN_SET('".$tag."',product_tags_en)");
-        $products = Product::whereRaw("FIND_IN_SET('".$tag."',product_tags_en)")->select('*')->paginate(3);
+
+        // return $products = Product::whereRaw("FIND_IN_SET('".$tag."',product_tags_en)")->select('*')->paginate(1);
+        $products = Product::where('status',1)->paginate(1);
+        // return $products->paginate(1);
 
         $categories = Category::orderBy('category_name_en','ASC')->get();
 
         return view('frontend.tags.tags_view',compact('products','categories'));
+    }
+
+    public function subCatWiseProduct($sub_cat_id,$slug){
+        $products = Product::where('status',1)->where('subcategory_id',$sub_cat_id)->orderBy('id','DESC')->paginate(1);
+
+        $categories = Category::orderBy('category_name_en','ASC')->get();
+
+        return view('frontend.product.subcategory_view',compact('products','categories'));
+    }
+    public function childCatWiseProduct($child_sub_cat_id,$slug){
+        $products = Product::where('status',1)->where('childSubcategory_id',$child_sub_cat_id)->orderBy('id','DESC')->paginate(1);
+
+        $categories = Category::orderBy('category_name_en','ASC')->get();
+
+        return view('frontend.product.childCatView',compact('products','categories'));
     }
 }

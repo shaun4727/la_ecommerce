@@ -14,15 +14,16 @@
 
                 @foreach($subcategories as $subcategory)
                 <div class="col-xs-12 col-sm-6 col-md-3 col-menu">
-                <h2 class="title">{{ $subcategory->subcategory_name_en }}</h2>
-
+                <a href="{{ url('subcategory/product/'.$subcategory->id.'/'.$subcategory->subcategory_slug_en) }}">
+                    <h2 class="title">{{ $subcategory->subcategory_name_en }}</h2>
+                </a>
                 @php
                     $childSubCategories = App\Models\ChildSubCategory::where('subcategory_id',$subcategory->id)->orderBy('childCategory_name_en','ASC')->get();
                 @endphp
 
                 <ul class="links">
                     @foreach($childSubCategories as $childCategory)
-                    <li><a href="#">{{ $childCategory->childCategory_name_en }}</a></li>
+                    <li><a href="{{ url('child_subcategory/product/'.$childCategory->id.'/'.$childCategory->childCategory_slug_en) }}">{{ $childCategory->childCategory_name_en }}</a></li>
                     @endforeach
                 </ul>
                 </div>
