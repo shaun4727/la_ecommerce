@@ -137,9 +137,9 @@ class IndexController extends Controller
     }
 
     public function tagWiseProduct($tag){
+        // $products = DB::SELECT("SELECT * FROM PRODUCTS WHERE FIND_IN_SET('".$tag."',product_tags_en)");
+        $products = Product::whereRaw("FIND_IN_SET('".$tag."',product_tags_en)")->select('*')->paginate(3);
 
-        $products = Product::where('status',1)->where('product_tags_en',$tag)->orderBy('id','DESC')->get();
-        $test = DB::table('products')->select(DB::raw('product_tags_en fr'));
         $categories = Category::orderBy('category_name_en','ASC')->get();
 
         return view('frontend.tags.tags_view',compact('products','categories'));
