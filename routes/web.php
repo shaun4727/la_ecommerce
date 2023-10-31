@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\SliderController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
+use App\Http\Controllers\Frontend\CartController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -157,4 +158,5 @@ Route::get('/product/details/{id}/{slug}',[IndexController::class, 'productDetai
 Route::get('/product/details/{tag}',[IndexController::class, 'tagWiseProduct']);
 Route::get('/subcategory/product/{sub_cat_id}/{slug}',[IndexController::class, 'subCatWiseProduct']);
 Route::get('/child_subcategory/product/{child_sub_cat_id}/{slug}',[IndexController::class, 'childCatWiseProduct']);
-
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);

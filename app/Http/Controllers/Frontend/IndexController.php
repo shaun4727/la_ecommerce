@@ -131,9 +131,14 @@ class IndexController extends Controller
     public function productDetail($id,$slug){
         $product = Product::findOrFail($id);
         $multiImgs = MultiImg::where('product_id',$id)->get();
+        $products = Product::where('status',1)->get();
 
+        $product_color_en = explode(',',$product->product_color_en);
+        $product_size_en = explode(',',$product->product_size_en);
 
-        return view('frontend.product.product_detail',compact('product','multiImgs'));
+        $related_product = Product::where('category_id',$product->category_id)->where('id','!=',$product->id)->get();
+
+        return view('frontend.product.product_detail',compact('products','product','multiImgs','product_color_en','product_size_en','related_product'));
     }
 
     public function tagWiseProduct($tag){
@@ -162,4 +167,23 @@ class IndexController extends Controller
 
         return view('frontend.product.childCatView',compact('products','categories'));
     }
+
+    /// Product View With Ajax
+	public function ProductViewAjax($id){
+        $product = Product::with('category','brand')->findOrFail($id);
+
+		$color = $product->product_color_en;
+		$product_color = explode(',', $color);
+
+		$size = $product->product_size_en;
+		$product_size = explode(',', $size);
+
+		return response()->json(array(
+			'product' => $product,
+			'color' => $product_color,
+			'size' => $product_size,
+
+		));
+
+	} // end method
 }
