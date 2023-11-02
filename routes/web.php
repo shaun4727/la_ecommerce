@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\User\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -160,3 +161,12 @@ Route::get('/subcategory/product/{sub_cat_id}/{slug}',[IndexController::class, '
 Route::get('/child_subcategory/product/{child_sub_cat_id}/{slug}',[IndexController::class, 'childCatWiseProduct']);
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+Route::get('/product/mini/cart', [CartController::class, 'addMiniCart']);
+Route::get('/product/mini/cart-remove/{rowId}', [CartController::class, 'removeMiniCart']);
+Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
+
+Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'User'],function(){
+    Route::get('/product/wishlist', [WishlistController::class, 'viewWishlist'])->name('wishlist');
+    Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);
+    Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
+});
