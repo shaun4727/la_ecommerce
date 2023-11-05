@@ -85,9 +85,32 @@ $route = Route::current()->getName();
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{ ($route == 'manage.slider') ?'active':'' }}"><a href="{{ route('manage.slider') }}"><i class="ti-more"></i>Manage Slider</a></li>
-                    <li><a href="gallery.html"><i class="ti-more"></i>Gallery</a></li>
-                    <li><a href="faq.html"><i class="ti-more"></i>FAQs</a></li>
-                    <li><a href="timeline.html"><i class="ti-more"></i>Timeline</a></li>
+                </ul>
+            </li>
+            <li class="treeview {{ ($prefix == '/coupons')?'active':'' }}">
+                <a href="#">
+                    <i data-feather="file"></i>
+                    <span>Coupons</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ ($route == 'manage.coupon') ?'active':'' }}"><a href="{{ route('manage.coupon') }}"><i class="ti-more"></i>Manage Coupon</a></li>
+                </ul>
+            </li>
+            <li class="treeview {{ ($prefix == '/shipping')?'active':'' }}">
+                <a href="#">
+                    <i data-feather="file"></i>
+                    <span>Shipping Area</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ ($route == 'manage.division') ?'active':'' }}"><a href="{{ route('manage.division') }}"><i class="ti-more"></i>Ship Division</a></li>
+                    <li class="{{ ($route == 'manage.district')? 'active':'' }}"><a href="{{ route('manage.district') }}"><i class="ti-more"></i>Ship District</a></li>
+                    <li class="{{ ($route == 'manage.state')? 'active':'' }}"><a href="{{ route('manage.state') }}"><i class="ti-more"></i>Ship State</a></li>
                 </ul>
             </li>
 
