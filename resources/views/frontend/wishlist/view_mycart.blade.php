@@ -40,86 +40,62 @@
                             </table>
                         </div>
                     </div>
+
+                    <div class="col-md-4 col-sm-12 estimate-ship-tax">
+                        @if(Session::has('coupon'))
+                        <table class="table" id="applied_coupon">
+                            <!-- /tbody -->
+                        </table><!-- /table -->
+                        @else
+
+                        <table class="table" id="applied_coupon">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span class="estimate-title">Discount Code</span>
+                                        <p>Enter your coupon code if you have one..</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control unicase-form-control text-input" id="coupon_name" placeholder="You Coupon..">
+                                            </div>
+                                            <div class="clearfix pull-right">
+                                                <button type="submit" class="btn-upper btn btn-primary" onclick="applyCoupon()">APPLY COUPON</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </table><!-- /table -->
+                        @endif
+                    </div><!-- /.estimate-ship-tax -->
+                    <div class="col-md-4 col-sm-12 estimate-ship-tax"></div>
+                    <div class="col-md-4 col-sm-12 cart-shopping-total">
+                        <table class="table">
+                            <thead id="couponCalField">
+
+                            </thead><!-- /thead -->
+                            <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="cart-checkout-btn pull-right">
+                                                <a href="{{ route('checkout') }}" type="submit" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT</a>
+                                                <span class="">Checkout with multiples address!</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            </tbody><!-- /tbody -->
+                        </table><!-- /table -->
+                    </div><!-- /.cart-shopping-total -->
                 </div><!-- /.row -->
+
             </div><!-- /.sigin-in-->
             <!-- ============================================== BRANDS CAROUSEL ============================================== -->
-            <div id="brands-carousel" class="logo-slider wow fadeInUp">
 
-                <div class="logo-slider-inner">
-                    <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
-                        <div class="item m-t-15">
-                            <a href="#" class="image">
-                                <img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif"
-                                    alt="">
-                            </a>
-                        </div><!--/.item-->
-
-                        <div class="item m-t-10">
-                            <a href="#" class="image">
-                                <img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif"
-                                    alt="">
-                            </a>
-                        </div><!--/.item-->
-
-                        <div class="item">
-                            <a href="#" class="image">
-                                <img data-echo="assets/images/brands/brand3.png" src="assets/images/blank.gif"
-                                    alt="">
-                            </a>
-                        </div><!--/.item-->
-
-                        <div class="item">
-                            <a href="#" class="image">
-                                <img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif"
-                                    alt="">
-                            </a>
-                        </div><!--/.item-->
-
-                        <div class="item">
-                            <a href="#" class="image">
-                                <img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif"
-                                    alt="">
-                            </a>
-                        </div><!--/.item-->
-
-                        <div class="item">
-                            <a href="#" class="image">
-                                <img data-echo="assets/images/brands/brand6.png" src="assets/images/blank.gif"
-                                    alt="">
-                            </a>
-                        </div><!--/.item-->
-
-                        <div class="item">
-                            <a href="#" class="image">
-                                <img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif"
-                                    alt="">
-                            </a>
-                        </div><!--/.item-->
-
-                        <div class="item">
-                            <a href="#" class="image">
-                                <img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif"
-                                    alt="">
-                            </a>
-                        </div><!--/.item-->
-
-                        <div class="item">
-                            <a href="#" class="image">
-                                <img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif"
-                                    alt="">
-                            </a>
-                        </div><!--/.item-->
-
-                        <div class="item">
-                            <a href="#" class="image">
-                                <img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif"
-                                    alt="">
-                            </a>
-                        </div><!--/.item-->
-                    </div><!-- /.owl-carousel #logo-slider -->
-                </div><!-- /.logo-slider-inner -->
-
-            </div><!-- /.logo-slider -->
             <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
         </div><!-- /.container -->
     </div><!-- /.body-content -->

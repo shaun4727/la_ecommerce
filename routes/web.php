@@ -79,7 +79,7 @@ Route::middleware([
 
 
 // user all routes
-Route::get('/',[IndexController::class, 'index']);
+Route::get('/',[IndexController::class, 'index'])->name('index');
 Route::get('/user/logout',[IndexController::class, 'UserLogout'])->name('user.logout');
 Route::get('/user/profile',[IndexController::class, 'UserProfile'])->name('user.profile');
 Route::post('/user/profile/update',[IndexController::class, 'UserProfileUpdate'])->name('user.profile.update');
@@ -212,3 +212,11 @@ Route::prefix('shipping')->group(function(){
     Route::post('/state/update/{id}', [ShippingAreaController::class, 'StateUpdate'])->name('state.update');
     Route::get('/state/delete/{id}', [ShippingAreaController::class, 'StateDelete'])->name('state.delete');
 });
+
+Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
+
+
+// Checkout Routes
+Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
