@@ -18,6 +18,8 @@ use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -172,6 +174,7 @@ Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'Use
     Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
     Route::get('/product/wishlist', [WishlistController::class, 'viewWishlist'])->name('wishlist');
+    Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
 
 });
 Route::get('/user/product/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
@@ -220,3 +223,7 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
 // Checkout Routes
 Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+Route::get('/district-get/ajax/{division_id}', [CheckoutController::class, 'DistrictGetAjax']);
+
+Route::get('/state-get/ajax/{district_id}', [CheckoutController::class, 'StateGetAjax']);
+Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store');
