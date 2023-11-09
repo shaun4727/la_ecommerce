@@ -16,10 +16,12 @@ use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\AllUserController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\User\CashController;
 
 /*
 |--------------------------------------------------------------------------
@@ -174,7 +176,10 @@ Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'Use
     Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
     Route::get('/product/wishlist', [WishlistController::class, 'viewWishlist'])->name('wishlist');
+    Route::get('/my/orders', [AllUserController::class, 'myOrders'])->name('my.orders');
+    Route::get('/order_details/{order_id}', [AllUserController::class, 'OrderDetails']);
     Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
+    Route::post('/cash/order', [CashController::class, 'CashOrder'])->name('cash.order');
 
 });
 Route::get('/user/product/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
