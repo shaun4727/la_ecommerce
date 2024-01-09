@@ -77,6 +77,22 @@ class IndexController extends Controller
 
     }
 
+
+    public function searchProduct(Request $request){
+        $search = $request->search;
+        $products = Product::where(function($query) use ($search){
+            $query->where('product_name_en','like',"%$search%");
+        })->where('status',1)->orderBy('id','DESC')->paginate(1);
+
+
+
+        $categories = Category::orderBy('category_name_en','ASC')->get();
+
+        return view('frontend.product.subcategory_view',compact('products','categories'));
+    }
+
+
+
     public function UserProfile(){
         $id = Auth::user()->id;
         $user = User::find($id);

@@ -64,9 +64,9 @@
             <!-- /.contact-row -->
             <!-- ============================================================= SEARCH AREA ============================================================= -->
             <div class="search-area">
-              <form>
+              <form method="get" action="{{ route('product.search') }}">
                 <div class="control-group">
-                  <ul class="categories-filter animate-dropdown">
+                  {{-- <ul class="categories-filter animate-dropdown">
                     <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
                       <ul class="dropdown-menu" role="menu" >
                         <li class="menu-header">Computer</li>
@@ -76,9 +76,9 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Watches</a></li>
                       </ul>
                     </li>
-                  </ul>
-                  <input class="search-field" placeholder="Search here..." />
-                  <a class="search-button" href="#" ></a> </div>
+                  </ul> --}}
+                  <input class="search-field" placeholder="Search here..." name="search"/>
+                  <input type="submit" class="search-button" value="Search"/> </div>
               </form>
             </div>
             <!-- /.search-area -->
@@ -140,7 +140,7 @@
             <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
               <div class="nav-outer">
                 <ul class="nav navbar-nav">
-                  <li class="active dropdown yamm-fw"> <a href="{{ url('/') }}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
+                  <li class="active dropdown yamm-fw"> <a href="{{ url('/') }}" >Home</a> </li>
                     @php
                         $categories = App\Models\Category::orderBy('category_name_en','ASC')->get();
                     @endphp
@@ -165,7 +165,7 @@
 
                               <ul class="links">
                                 @foreach($childSubCategories as $childCategory)
-                                <li><a href="#">{{ $childCategory->childCategory_name_en }}</a></li>
+                                <li><a href="{{ url('child_subcategory/product/'.$childCategory->id.'/'.$childCategory->childCategory_slug_en) }}">{{ $childCategory->childCategory_name_en }}</a></li>
                                 @endforeach
                               </ul>
                             </div>

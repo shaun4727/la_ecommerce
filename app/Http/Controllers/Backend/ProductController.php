@@ -86,6 +86,9 @@ class ProductController extends Controller
         return redirect()->route('manage.product');
     }
 
+
+
+
     public function manageProduct(){
         $products = Product::latest()->get();
         return view('backend.product.product_view',compact('products'));

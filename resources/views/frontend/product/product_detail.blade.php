@@ -110,14 +110,14 @@ Product Detail
 
 							<div class="rating-reviews m-t-20">
 								<div class="row">
-									<div class="col-sm-3">
+									{{-- <div class="col-sm-3">
 										<div class="rating rateit-small"></div>
-									</div>
-									<div class="col-sm-8">
+									</div> --}}
+									{{-- <div class="col-sm-8">
 										<div class="reviews">
 											<a href="#" class="lnk">(13 Reviews)</a>
 										</div>
-									</div>
+									</div> --}}
 								</div><!-- /.row -->
 							</div><!-- /.rating-reviews -->
 
@@ -130,7 +130,11 @@ Product Detail
 									</div>
 									<div class="col-sm-9">
 										<div class="stock-box">
+                                            @if($product->product_qty > 0)
 											<span class="value">In Stock</span>
+                                            @else
+                                            <span class="value">Stock Out</span>
+                                            @endif
 										</div>
 									</div>
 								</div><!-- /.row -->
@@ -247,8 +251,8 @@ Product Detail
 						<div class="col-sm-3">
 							<ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
 								<li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
-								<li><a data-toggle="tab" href="#review">REVIEW</a></li>
-								<li><a data-toggle="tab" href="#tags">TAGS</a></li>
+								{{-- <li><a data-toggle="tab" href="#review">REVIEW</a></li> --}}
+								{{-- <li><a data-toggle="tab" href="#tags">TAGS</a></li> --}}
 							</ul><!-- /.nav-tabs #product-tabs -->
 						</div>
 						<div class="col-sm-9">
