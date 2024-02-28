@@ -109,9 +109,19 @@ Product Detail
 							<h1 class="name" id="pname">{{ $product->product_name_en }}</h1>
 
 							<div class="rating-reviews m-t-20">
-								<div class="row">
-									<div class="col-sm-3">
-										<div class="rating rateit-small"></div>
+								<div class="row" style="padding-left: 15px;">
+									<div class="col-6">
+										{{-- <div class="rating rateit-small"></div> --}}
+                                        @for($i=0; $i<5; $i++)
+                                        <i class="fa-solid fa fa-star"></i>
+                                        @endfor
+
+
+									</div>
+									<div class="col-6" style="position: relative; top:-18.5px;">
+										@for($i=0; $i<$rating; $i++)
+                                        <i class="fa-solid fa fa-star" style="color:yellow;"></i>
+                                        @endfor
 									</div>
 									{{-- <div class="col-sm-8">
 										<div class="reviews">
@@ -286,48 +296,52 @@ Product Detail
 											{{-- <h4 class="title">Write your own review</h4> --}}
 											<div class="review-table">
 												<div class="table-responsive">
-													<table class="table">
-														<thead>
-															<tr>
-																<th class="cell-label">&nbsp;</th>
-																<th>1 star</th>
-																<th>2 stars</th>
-																<th>3 stars</th>
-																<th>4 stars</th>
-																<th>5 stars</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<td class="cell-label">Quality</td>
-																<td><input type="radio" name="quality" class="radio" value="1"></td>
-																<td><input type="radio" name="quality" class="radio" value="2"></td>
-																<td><input type="radio" name="quality" class="radio" value="3"></td>
-																<td><input type="radio" name="quality" class="radio" value="4"></td>
-																<td><input type="radio" name="quality" class="radio" value="5"></td>
-															</tr>
-															{{-- <tr>
-																<td class="cell-label">Price</td>
-																<td><input type="radio" name="quality" class="radio" value="1"></td>
-																<td><input type="radio" name="quality" class="radio" value="2"></td>
-																<td><input type="radio" name="quality" class="radio" value="3"></td>
-																<td><input type="radio" name="quality" class="radio" value="4"></td>
-																<td><input type="radio" name="quality" class="radio" value="5"></td>
-															</tr>
-															<tr>
-																<td class="cell-label">Value</td>
-																<td><input type="radio" name="quality" class="radio" value="1"></td>
-																<td><input type="radio" name="quality" class="radio" value="2"></td>
-																<td><input type="radio" name="quality" class="radio" value="3"></td>
-																<td><input type="radio" name="quality" class="radio" value="4"></td>
-																<td><input type="radio" name="quality" class="radio" value="5"></td>
-															</tr> --}}
-														</tbody>
+                                                    <form action="{{ route('review.store') }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="cell-label">&nbsp;</th>
+                                                                    <th>1 star</th>
+                                                                    <th>2 stars</th>
+                                                                    <th>3 stars</th>
+                                                                    <th>4 stars</th>
+                                                                    <th>5 stars</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="cell-label">Quality</td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="1"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="2"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="3"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="4"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="5"></td>
+                                                                </tr>
+                                                                {{-- <tr>
+                                                                    <td class="cell-label">Price</td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="1"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="2"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="3"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="4"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="5"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="cell-label">Value</td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="1"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="2"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="3"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="4"></td>
+                                                                    <td><input type="radio" name="quality" class="radio" value="5"></td>
+                                                                </tr> --}}
+                                                            </tbody>
 
-													</table><!-- /.table .table-bordered -->
-                                                    <div class="action text-right">
-                                                        <button class="btn btn-primary btn-upper">SUBMIT REVIEW</button>
-                                                    </div>
+                                                        </table><!-- /.table .table-bordered -->
+                                                        <div class="action text-right">
+                                                            <button type="submit" class="btn btn-primary btn-upper">SUBMIT REVIEW</button>
+                                                        </div>
+                                                    </form>
 												</div><!-- /.table-responsive -->
 											</div><!-- /.review-table -->
 
@@ -408,6 +422,19 @@ Product Detail
 
 
         @foreach($related_product as $product)
+
+        @php
+                $review = App\Models\Review::groupBy('product_id')
+                        ->select('product_id',DB::raw('AVG(rating) as rating'))
+                        ->where('product_id',$product->id)
+                        ->first();
+
+                if(isset($review)){
+                    $rating = intval($review->rating);
+                }else{
+                    $rating = 0;
+                }
+        @endphp
 		<div class="item item-carousel">
 			<div class="products">
 
@@ -431,7 +458,16 @@ Product Detail
 
 		<div class="product-info text-left">
 			<h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">{{ $product->product_name_en }}</a></h3>
-			<div class="rating rateit-small"></div>
+			<div class="">
+                @for($i=0; $i<5; $i++)
+                    <i class="fa-solid fa fa-star"></i>
+                @endfor
+            </div>
+			<div class="" style="position: relative; top:-18.5px;">
+                @for($i=0; $i<$rating; $i++)
+                    <i class="fa-solid fa fa-star" style="color:yellow;"></i>
+                @endfor
+            </div>
 			<div class="description"></div>
 
 			<div class="product-price">

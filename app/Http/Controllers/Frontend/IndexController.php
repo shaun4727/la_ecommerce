@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\MultiImg;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use App\Models\Review;
 
 class IndexController extends Controller
 {
@@ -158,7 +159,19 @@ class IndexController extends Controller
 
         $related_product = Product::where('category_id',$product->category_id)->where('id','!=',$product->id)->get();
 
-        return view('frontend.product.product_detail',compact('products','product','multiImgs','product_color_en','product_size_en','related_product'));
+        $review = Review::groupBy('product_id')
+                        ->select('product_id',DB::raw('AVG(rating) as rating'))
+                        ->where('product_id',$id)
+                        ->first();
+
+        if(isset($review)){
+            $rating = intval($review->rating);
+        }else{
+            $rating = 0;
+        }
+
+
+        return view('frontend.product.product_detail',compact('products','product','multiImgs','product_color_en','product_size_en','related_product','rating'));
     }
 
     public function tagWiseProduct($tag){

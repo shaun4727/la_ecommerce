@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\AllUserController;
@@ -183,6 +184,7 @@ Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'Use
     Route::get('/invoice_download/{order_id}', [AllUserController::class, 'InvoiceDownload']);
     Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
     Route::post('/cash/order', [CashController::class, 'CashOrder'])->name('cash.order');
+    Route::post('/create/review',[ReviewController::class,'StoreReview'])->name('review.store');
 
 });
 Route::get('/user/product/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
