@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Session;
 use Auth;
@@ -14,6 +15,15 @@ use Carbon\Carbon;
 class StripeController extends Controller
 {
     public function StripeOrder(Request $request){
+
+
+        $carts = Cart::content();
+        foreach($carts as $cart){
+            $product = Product::where('id',$cart->id)->first();
+            $product->product_qty = $product->product_qty - $cart->qty;
+            $product->save();
+        }
+
 
     	if (Session::has('coupon')) {
     		$total_amount = Session::get('coupon')['total_amount'];
@@ -34,6 +44,7 @@ class StripeController extends Controller
         ]);
 
         // dd($charge);
+
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
             'division_id' => $request->division_id,

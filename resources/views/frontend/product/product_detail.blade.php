@@ -110,9 +110,9 @@ Product Detail
 
 							<div class="rating-reviews m-t-20">
 								<div class="row">
-									{{-- <div class="col-sm-3">
+									<div class="col-sm-3">
 										<div class="rating rateit-small"></div>
-									</div> --}}
+									</div>
 									{{-- <div class="col-sm-8">
 										<div class="reviews">
 											<a href="#" class="lnk">(13 Reviews)</a>
@@ -251,7 +251,7 @@ Product Detail
 						<div class="col-sm-3">
 							<ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
 								<li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
-								{{-- <li><a data-toggle="tab" href="#review">REVIEW</a></li> --}}
+								<li><a data-toggle="tab" href="#review">REVIEW</a></li>
 								{{-- <li><a data-toggle="tab" href="#tags">TAGS</a></li> --}}
 							</ul><!-- /.nav-tabs #product-tabs -->
 						</div>
@@ -271,19 +271,19 @@ Product Detail
 										<div class="product-reviews">
 											<h4 class="title">Customer Reviews</h4>
 
-											<div class="reviews">
+											{{-- <div class="reviews">
 												<div class="review">
 													<div class="review-title"><span class="summary">We love this product</span><span class="date"><i class="fa fa-calendar"></i><span>1 days ago</span></span></div>
 													<div class="text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit.Aliquam suscipit."</div>
 																										</div>
 
-											</div><!-- /.reviews -->
+											</div><!-- /.reviews --> --}}
 										</div><!-- /.product-reviews -->
 
 
 
 										<div class="product-add-review">
-											<h4 class="title">Write your own review</h4>
+											{{-- <h4 class="title">Write your own review</h4> --}}
 											<div class="review-table">
 												<div class="table-responsive">
 													<table class="table">
@@ -306,7 +306,7 @@ Product Detail
 																<td><input type="radio" name="quality" class="radio" value="4"></td>
 																<td><input type="radio" name="quality" class="radio" value="5"></td>
 															</tr>
-															<tr>
+															{{-- <tr>
 																<td class="cell-label">Price</td>
 																<td><input type="radio" name="quality" class="radio" value="1"></td>
 																<td><input type="radio" name="quality" class="radio" value="2"></td>
@@ -321,13 +321,17 @@ Product Detail
 																<td><input type="radio" name="quality" class="radio" value="3"></td>
 																<td><input type="radio" name="quality" class="radio" value="4"></td>
 																<td><input type="radio" name="quality" class="radio" value="5"></td>
-															</tr>
+															</tr> --}}
 														</tbody>
+
 													</table><!-- /.table .table-bordered -->
+                                                    <div class="action text-right">
+                                                        <button class="btn btn-primary btn-upper">SUBMIT REVIEW</button>
+                                                    </div>
 												</div><!-- /.table-responsive -->
 											</div><!-- /.review-table -->
 
-											<div class="review-form">
+											{{-- <div class="review-form">
 												<div class="form-container">
 													<form role="form" class="cnt-form">
 
@@ -357,7 +361,7 @@ Product Detail
 
 													</form><!-- /.cnt-form -->
 												</div><!-- /.form-container -->
-											</div><!-- /.review-form -->
+											</div><!-- /.review-form --> --}}
 
 										</div><!-- /.product-add-review -->
 

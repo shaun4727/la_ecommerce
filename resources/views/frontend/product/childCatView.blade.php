@@ -14,7 +14,7 @@ Child Category Product
       <div class="breadcrumb-inner">
         <ul class="list-inline list-unstyled">
           <li><a href="#">Home</a></li>
-          <li class='active'>Handbags</li>
+          <li class='active'>Products</li>
         </ul>
       </div>
       <!-- /.breadcrumb-inner -->
@@ -33,15 +33,21 @@ Child Category Product
           <div class="sidebar-module-container">
             <div class="sidebar-filter">
               <!-- ============================================== SIDEBAR CATEGORY ============================================== -->
-              <div class="sidebar-widget wow fadeInUp">
-                <h3 class="section-title">shop by</h3>
+
+
+
+
+
+
+              {{-- <div class="sidebar-widget wow fadeInUp"> --}}
+                {{-- <h3 class="section-title">shop by</h3>
                 <div class="widget-header">
                   <h4 class="widget-title">Category</h4>
                 </div>
-                <div class="sidebar-widget-body">
+                <div class="sidebar-widget-body"> --}}
 
 
-                  <div class="accordion">
+                  {{-- <div class="accordion">
 
 
                     @foreach($categories as $category)
@@ -77,28 +83,28 @@ Child Category Product
                   <!-- /.accordion -->
                 </div>
                 <!-- /.sidebar-widget-body -->
-              </div>
+              </div> --}}
               <!-- /.sidebar-widget -->
               <!-- ============================================== SIDEBAR CATEGORY : END ============================================== -->
 
               <!-- ============================================== PRICE SILDER============================================== -->
-              <div class="sidebar-widget wow fadeInUp">
+              {{-- <div class="sidebar-widget wow fadeInUp">
                 <div class="widget-header">
                   <h4 class="widget-title">Price Slider</h4>
                 </div>
                 <div class="sidebar-widget-body m-t-10">
-                  <div class="price-range-holder"> <span class="min-max"> <span class="pull-left">$200.00</span> <span class="pull-right">$800.00</span> </span>
+                  <div class="price-range-holder"> <span class="min-max"> <span class="pull-left">$200.00</span> <span class="pull-right">$700.00</span> </span>
                     <input type="text" id="amount" style="border:0; color:#666666; font-weight:bold;text-align:center;">
                     <input type="text" class="price-slider" value="" >
                   </div>
                   <!-- /.price-range-holder -->
-                  <a href="#" class="lnk btn btn-primary">Show Now</a> </div>
+                  <button class="lnk btn btn-primary" onclick="priceRange()" >Show Now</button> </div>
                 <!-- /.sidebar-widget-body -->
-              </div>
+              </div> --}}
               <!-- /.sidebar-widget -->
               <!-- ============================================== PRICE SILDER : END ============================================== -->
               <!-- ============================================== MANUFACTURES============================================== -->
-              <div class="sidebar-widget wow fadeInUp">
+              {{-- <div class="sidebar-widget wow fadeInUp">
                 <div class="widget-header">
                   <h4 class="widget-title">Manufactures</h4>
                 </div>
@@ -114,11 +120,11 @@ Child Category Product
                   <!--<a href="#" class="lnk btn btn-primary">Show Now</a>-->
                 </div>
                 <!-- /.sidebar-widget-body -->
-              </div>
+              </div> --}}
               <!-- /.sidebar-widget -->
               <!-- ============================================== MANUFACTURES: END ============================================== -->
               <!-- ============================================== COLOR============================================== -->
-              <div class="sidebar-widget wow fadeInUp">
+              {{-- <div class="sidebar-widget wow fadeInUp">
                 <div class="widget-header">
                   <h4 class="widget-title">Colors</h4>
                 </div>
@@ -133,11 +139,11 @@ Child Category Product
                   </ul>
                 </div>
                 <!-- /.sidebar-widget-body -->
-              </div>
+              </div> --}}
               <!-- /.sidebar-widget -->
               <!-- ============================================== COLOR: END ============================================== -->
               <!-- ============================================== COMPARE============================================== -->
-              <div class="sidebar-widget wow fadeInUp outer-top-vs">
+              {{-- <div class="sidebar-widget wow fadeInUp outer-top-vs">
                 <h3 class="section-title">Compare products</h3>
                 <div class="sidebar-widget-body">
                   <div class="compare-report">
@@ -146,7 +152,7 @@ Child Category Product
                   <!-- /.compare-report -->
                 </div>
                 <!-- /.sidebar-widget-body -->
-              </div>
+              </div> --}}
               <!-- /.sidebar-widget -->
               <!-- ============================================== COMPARE: END ============================================== -->
               <!-- ============================================== PRODUCT TAGS ============================================== -->
@@ -199,16 +205,15 @@ Child Category Product
               </div>
               <!-- /.col -->
               <div class="col col-sm-12 col-md-6">
-                <div class="col col-sm-3 col-md-6 no-padding">
+                <div class="col col-sm-3 col-md-7 no-padding">
                   <div class="lbl-cnt"> <span class="lbl">Sort by</span>
                     <div class="fld inline">
                       <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
-                        <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> Position <span class="caret"></span> </button>
+                        <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> {{ $orderBy }} <span class="caret"></span> </button>
                         <ul role="menu" class="dropdown-menu">
-                          <li role="presentation"><a href="#">position</a></li>
-                          <li role="presentation"><a href="#">Price:Lowest first</a></li>
-                          <li role="presentation"><a href="#">Price:HIghest first</a></li>
-                          <li role="presentation"><a href="#">Product Name:A to Z</a></li>
+                          <li role="presentation"><a href="{{ url('products/'.$child_sub_cat_id.'/'.$slug.'/Lowest first') }}">Price:Lowest first</a></li>
+                          <li role="presentation"><a href="{{ url('products/'.$child_sub_cat_id.'/'.$slug.'/Highest first') }}">Price:HIghest first</a></li>
+                          <li role="presentation"><a href="{{ url('products/'.$child_sub_cat_id.'/'.$slug.'/A to Z') }}">Product Name:A to Z</a></li>
                         </ul>
                       </div>
                     </div>
@@ -217,7 +222,7 @@ Child Category Product
                   <!-- /.lbl-cnt -->
                 </div>
                 <!-- /.col -->
-                <div class="col col-sm-3 col-md-6 no-padding">
+                {{-- <div class="col col-sm-3 col-md-5 no-padding">
                   <div class="lbl-cnt"> <span class="lbl">Show</span>
                     <div class="fld inline">
                       <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
@@ -239,7 +244,7 @@ Child Category Product
                     <!-- /.fld -->
                   </div>
                   <!-- /.lbl-cnt -->
-                </div>
+                </div> --}}
                 <!-- /.col -->
               </div>
               <!-- /.col -->
@@ -300,8 +305,8 @@ Child Category Product
                                   <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
                                   <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                 </li>
-                                <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                                <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal"></i> </a> </li>
+                                <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" id="{{ $product->id }}" onclick="addToWishList(this.id)" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                                {{-- <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal"></i> </a> </li> --}}
                               </ul>
                             </div>
                             <!-- /.action -->
@@ -362,8 +367,8 @@ Child Category Product
                                       <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
                                       <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                     </li>
-                                    <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                                    <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal"></i> </a> </li>
+                                    <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" id="{{ $product->id }}" onclick="addToWishList(this.id)" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                                    {{-- <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal"></i> </a> </li> --}}
                                   </ul>
                                 </div>
                                 <!-- /.action -->

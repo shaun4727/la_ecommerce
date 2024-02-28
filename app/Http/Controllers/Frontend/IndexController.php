@@ -148,6 +148,7 @@ class IndexController extends Controller
     }
 
     public function productDetail($id,$slug){
+
         $product = Product::findOrFail($id);
         $multiImgs = MultiImg::where('product_id',$id)->get();
         $products = Product::where('status',1)->get();
@@ -173,18 +174,41 @@ class IndexController extends Controller
     }
 
     public function subCatWiseProduct($sub_cat_id,$slug){
-        $products = Product::where('status',1)->where('subcategory_id',$sub_cat_id)->orderBy('id','DESC')->paginate(1);
+        $products = Product::where('status',1)->where('subcategory_id',$sub_cat_id)->orderBy('id','DESC')->paginate(10);
 
         $categories = Category::orderBy('category_name_en','ASC')->get();
 
         return view('frontend.product.subcategory_view',compact('products','categories'));
     }
     public function childCatWiseProduct($child_sub_cat_id,$slug){
-        $products = Product::where('status',1)->where('childSubcategory_id',$child_sub_cat_id)->orderBy('id','DESC')->paginate(1);
+        $products = Product::where('status',1)->where('childSubcategory_id',$child_sub_cat_id)->orderBy('selling_price','ASC')->paginate(10);
+
+        $categories = Category::orderBy('category_name_en','ASC')->get();
+        $orderBy = "Lowest first";
+
+        return view('frontend.product.childCatView',compact('products','categories','child_sub_cat_id','slug','orderBy'));
+    }
+
+    public function childCatWiseProductOrderBy($child_sub_cat_id,$slug,$orderBy){
+        $order = '';
+        $field = '';
+        if($orderBy === 'Lowest first'){
+            $order = 'ASC';
+            $field = 'selling_price';
+        }
+        else if($orderBy === 'A to Z'){
+            $order = 'ASC';
+            $field = 'product_name_en';
+        }
+        else{
+            $order = 'DESC';
+            $field = 'selling_price';
+        }
+        $products = Product::where('status',1)->where('childSubcategory_id',$child_sub_cat_id)->orderBy($field,$order)->paginate(10);
 
         $categories = Category::orderBy('category_name_en','ASC')->get();
 
-        return view('frontend.product.childCatView',compact('products','categories'));
+        return view('frontend.product.childCatView',compact('products','categories','child_sub_cat_id','slug','orderBy'));
     }
 
     /// Product View With Ajax

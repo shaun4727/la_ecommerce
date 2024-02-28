@@ -167,6 +167,7 @@ Route::get('/search',[IndexController::class, 'searchProduct'])->name('product.s
 Route::get('/product/details/{tag}',[IndexController::class, 'tagWiseProduct']);
 Route::get('/subcategory/product/{sub_cat_id}/{slug}',[IndexController::class, 'subCatWiseProduct']);
 Route::get('/child_subcategory/product/{child_sub_cat_id}/{slug}',[IndexController::class, 'childCatWiseProduct']);
+Route::get('/products/{child_sub_cat_id}/{slug}/{order}',[IndexController::class, 'childCatWiseProductOrderBy']);
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 Route::get('/product/mini/cart', [CartController::class, 'addMiniCart']);
