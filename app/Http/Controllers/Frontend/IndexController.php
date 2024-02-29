@@ -13,6 +13,7 @@ use App\Models\MultiImg;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\Review;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class IndexController extends Controller
 {
@@ -178,15 +179,50 @@ class IndexController extends Controller
     }
 
     public function tagWiseProduct($tag){
-        // $products = DB::SELECT("SELECT * FROM PRODUCTS WHERE FIND_IN_SET('".$tag."',product_tags_en)");
+        //$products = DB::SELECT("SELECT * FROM PRODUCTS WHERE FIND_IN_SET('".$tag."',product_tags_en) ORDER BY selling_price ASC");
 
-        // return $products = Product::whereRaw("FIND_IN_SET('".$tag."',product_tags_en)")->select('*')->paginate(1);
-        $products = Product::where('status',1)->paginate(1);
-        // return $products->paginate(1);
+        // $collect = collect($products);
+
+        // $page = 1;
+        // $size = 10;
+
+        // return $paginationData = new LengthAwarePaginator(
+        //     $collect->forPage($page, $size),
+        //     $collect->count(),
+        //     $size,
+        //     $page
+        // );
+
+
+        $products = Product::whereRaw("FIND_IN_SET('".$tag."',product_tags_en)")->orderBy('selling_price','asc')->paginate(10);
+        // $products = Product::where('status',1)->paginate(10);
+
+        $categories = Category::orderBy('category_name_en','ASC')->get();
+        $orderBy = "Lowest first";
+
+        return view('frontend.tags.tags_view',compact('products','categories','orderBy'));
+    }
+
+    public function tagWiseProductOrderBy($tag,$orderBy="Lowest first"){
+        $order = '';
+        $field = '';
+        if($orderBy === 'Lowest first'){
+            $order = 'ASC';
+            $field = 'selling_price';
+        }
+        else if($orderBy === 'A to Z'){
+            $order = 'ASC';
+            $field = 'product_name_en';
+        }
+        else{
+            $order = 'DESC';
+            $field = 'selling_price';
+        }
+        $products = Product::whereRaw("FIND_IN_SET('".$tag."',product_tags_en)")->orderBy($field,$order)->select('*')->paginate(10);
 
         $categories = Category::orderBy('category_name_en','ASC')->get();
 
-        return view('frontend.tags.tags_view',compact('products','categories'));
+        return view('frontend.tags.tags_view',compact('products','categories','orderBy'));
     }
 
     public function subCatWiseProduct($sub_cat_id,$slug){

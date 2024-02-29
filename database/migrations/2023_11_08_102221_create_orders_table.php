@@ -30,10 +30,10 @@ return new class extends Migration
             $table->string('currency');
             $table->float('amount',8,2);
             $table->string('order_number')->nullable();
-            $table->string('invoice_no');
+            $table->integer('invoice_no');
             $table->string('order_date');
             $table->string('order_month');
-            $table->string('order_year');
+            $table->integer('order_year');
             $table->string('confirmed_date')->nullable();
             $table->string('processing_date')->nullable();
             $table->string('picked_date')->nullable();
@@ -42,7 +42,7 @@ return new class extends Migration
             $table->string('cancel_date')->nullable();
             $table->string('return_date')->nullable();
             $table->string('return_reason')->nullable();
-            $table->string('status');
+            $table->integer('status');
             $table->timestamps();
         });
     }

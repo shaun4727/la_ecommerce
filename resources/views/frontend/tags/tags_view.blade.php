@@ -14,7 +14,7 @@ Tag Wise Product
       <div class="breadcrumb-inner">
         <ul class="list-inline list-unstyled">
           <li><a href="#">Home</a></li>
-          <li class='active'>Handbags</li>
+          <li class='active'>Products</li>
         </ul>
       </div>
       <!-- /.breadcrumb-inner -->
@@ -33,7 +33,7 @@ Tag Wise Product
           <div class="sidebar-module-container">
             <div class="sidebar-filter">
               <!-- ============================================== SIDEBAR CATEGORY ============================================== -->
-              <div class="sidebar-widget wow fadeInUp">
+              {{-- <div class="sidebar-widget wow fadeInUp">
                 <h3 class="section-title">shop by</h3>
                 <div class="widget-header">
                   <h4 class="widget-title">Category</h4>
@@ -77,12 +77,12 @@ Tag Wise Product
                   <!-- /.accordion -->
                 </div>
                 <!-- /.sidebar-widget-body -->
-              </div>
+              </div> --}}
               <!-- /.sidebar-widget -->
               <!-- ============================================== SIDEBAR CATEGORY : END ============================================== -->
 
               <!-- ============================================== PRICE SILDER============================================== -->
-              <div class="sidebar-widget wow fadeInUp">
+              {{-- <div class="sidebar-widget wow fadeInUp">
                 <div class="widget-header">
                   <h4 class="widget-title">Price Slider</h4>
                 </div>
@@ -94,11 +94,11 @@ Tag Wise Product
                   <!-- /.price-range-holder -->
                   <a href="#" class="lnk btn btn-primary">Show Now</a> </div>
                 <!-- /.sidebar-widget-body -->
-              </div>
+              </div> --}}
               <!-- /.sidebar-widget -->
               <!-- ============================================== PRICE SILDER : END ============================================== -->
               <!-- ============================================== MANUFACTURES============================================== -->
-              <div class="sidebar-widget wow fadeInUp">
+              {{-- <div class="sidebar-widget wow fadeInUp">
                 <div class="widget-header">
                   <h4 class="widget-title">Manufactures</h4>
                 </div>
@@ -114,11 +114,11 @@ Tag Wise Product
                   <!--<a href="#" class="lnk btn btn-primary">Show Now</a>-->
                 </div>
                 <!-- /.sidebar-widget-body -->
-              </div>
+              </div> --}}
               <!-- /.sidebar-widget -->
               <!-- ============================================== MANUFACTURES: END ============================================== -->
               <!-- ============================================== COLOR============================================== -->
-              <div class="sidebar-widget wow fadeInUp">
+              {{-- <div class="sidebar-widget wow fadeInUp">
                 <div class="widget-header">
                   <h4 class="widget-title">Colors</h4>
                 </div>
@@ -133,11 +133,11 @@ Tag Wise Product
                   </ul>
                 </div>
                 <!-- /.sidebar-widget-body -->
-              </div>
+              </div> --}}
               <!-- /.sidebar-widget -->
               <!-- ============================================== COLOR: END ============================================== -->
               <!-- ============================================== COMPARE============================================== -->
-              <div class="sidebar-widget wow fadeInUp outer-top-vs">
+              {{-- <div class="sidebar-widget wow fadeInUp outer-top-vs">
                 <h3 class="section-title">Compare products</h3>
                 <div class="sidebar-widget-body">
                   <div class="compare-report">
@@ -146,7 +146,7 @@ Tag Wise Product
                   <!-- /.compare-report -->
                 </div>
                 <!-- /.sidebar-widget-body -->
-              </div>
+              </div> --}}
               <!-- /.sidebar-widget -->
               <!-- ============================================== COMPARE: END ============================================== -->
               <!-- ============================================== PRODUCT TAGS ============================================== -->
@@ -174,11 +174,11 @@ Tag Wise Product
             <div class="item">
               <div class="image"> <img src="{{ asset('frontend/assets/images/banners/cat-banner-1.jpg') }}" alt="" class="img-responsive"> </div>
               <div class="container-fluid">
-                <div class="caption vertical-top text-left">
+                {{-- <div class="caption vertical-top text-left">
                   <div class="big-text"> Big Sale </div>
                   <div class="excerpt hidden-sm hidden-md"> Save up to 49% off </div>
                   <div class="excerpt-normal hidden-sm hidden-md"> Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>
-                </div>
+                </div> --}}
                 <!-- /.caption -->
               </div>
               <!-- /.container-fluid -->
@@ -199,25 +199,24 @@ Tag Wise Product
               </div>
               <!-- /.col -->
               <div class="col col-sm-12 col-md-6">
-                <div class="col col-sm-3 col-md-6 no-padding">
-                  <div class="lbl-cnt"> <span class="lbl">Sort by</span>
-                    <div class="fld inline">
-                      <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
-                        <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> Position <span class="caret"></span> </button>
-                        <ul role="menu" class="dropdown-menu">
-                          <li role="presentation"><a href="#">position</a></li>
-                          <li role="presentation"><a href="#">Price:Lowest first</a></li>
-                          <li role="presentation"><a href="#">Price:HIghest first</a></li>
-                          <li role="presentation"><a href="#">Product Name:A to Z</a></li>
-                        </ul>
+                <div class="col col-sm-3 col-md-7 no-padding">
+                    <div class="lbl-cnt"> <span class="lbl">Sort by</span>
+                        <div class="fld inline">
+                          <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
+                            <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> {{ $orderBy }} <span class="caret"></span> </button>
+                            <ul role="menu" class="dropdown-menu">
+                              {{-- <li role="presentation"><a href="{{ url('products/'.$child_sub_cat_id.'/'.$slug.'/Lowest first') }}">Price:Lowest first</a></li>
+                              <li role="presentation"><a href="{{ url('products/'.$child_sub_cat_id.'/'.$slug.'/Highest first') }}">Price:HIghest first</a></li>
+                              <li role="presentation"><a href="{{ url('products/'.$child_sub_cat_id.'/'.$slug.'/A to Z') }}">Product Name:A to Z</a></li> --}}
+                            </ul>
+                          </div>
+                        </div>
+                        <!-- /.fld -->
                       </div>
-                    </div>
-                    <!-- /.fld -->
-                  </div>
                   <!-- /.lbl-cnt -->
                 </div>
                 <!-- /.col -->
-                <div class="col col-sm-3 col-md-6 no-padding">
+                {{-- <div class="col col-sm-3 col-md-6 no-padding">
                   <div class="lbl-cnt"> <span class="lbl">Show</span>
                     <div class="fld inline">
                       <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
@@ -239,7 +238,7 @@ Tag Wise Product
                     <!-- /.fld -->
                   </div>
                   <!-- /.lbl-cnt -->
-                </div>
+                </div> --}}
                 <!-- /.col -->
               </div>
               <!-- /.col -->
@@ -259,7 +258,7 @@ Tag Wise Product
 
 
                     @foreach($products as $product)
-                    <div class="col-sm-6 col-md-4 wow fadeInUp">
+                    <div class="col-sm-6 col-md-4 wow fadeInUp" style="height: 414px!important;">
                       <div class="products">
                         <div class="product">
                           <div class="product-image">

@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('category_name_en');
-            $table->string('category_name_ban');
-            $table->string('category_slug_en');
-            $table->string('category_slug_ban');
-            $table->string('category_icon');
+            $table->string('category_name_en')->nullable();
+            $table->string('category_name_ban')->nullable();
+            $table->string('category_slug_en')->nullable();
+            $table->string('category_slug_ban')->nullable();
+            $table->string('category_icon')->nullable();
             $table->timestamps();
         });
     }

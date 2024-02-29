@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
-            $table->string('brand_name_en');
-            $table->string('brand_name_ban');
-            $table->string('brand_slug_en');
-            $table->string('brand_slug_ban');
-            $table->string('brand_image');
+            $table->string('brand_name_en')->nullable();
+            $table->string('brand_name_ban')->nullable();
+            $table->string('brand_slug_en')->nullable();
+            $table->string('brand_slug_ban')->nullable();
+            $table->string('brand_image')->nullable();
             $table->timestamps();
         });
     }

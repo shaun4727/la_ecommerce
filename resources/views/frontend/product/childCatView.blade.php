@@ -264,7 +264,7 @@ Child Category Product
 
 
                     @foreach($products as $product)
-                    <div class="col-sm-6 col-md-4 wow fadeInUp">
+                    <div class="col-sm-6 col-md-4 wow fadeInUp" style="height: 414px!important;">
                       <div class="products">
                         <div class="product">
                           <div class="product-image">

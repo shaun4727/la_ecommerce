@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id');
-            $table->string('subcategory_name_en');
-            $table->string('subcategory_name_ban');
-            $table->string('subcategory_slug_en');
-            $table->string('subcategory_slug_ban');
+            $table->integer('category_id')->nullable();
+            $table->string('subcategory_name_en')->nullable();
+            $table->string('subcategory_name_ban')->nullable();
+            $table->string('subcategory_slug_en')->nullable();
+            $table->string('subcategory_slug_ban')->nullable();
             $table->timestamps();
         });
     }
