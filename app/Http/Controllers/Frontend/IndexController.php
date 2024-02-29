@@ -29,38 +29,38 @@ class IndexController extends Controller
         $special_offer = array();
         $sub_array = array();
         $count = 0;
-        $index = 1;
 
         foreach($sproducts as $product){
             array_push($sub_array,$product);
             if($count == 2){
-                $count = 0;
+                $count = -1;
                 array_push($special_offer,$sub_array);
                 $sub_array = array();
-            }elseif($index == count($products)){
-                array_push($special_offer,$sub_array);
             }
 
             $count++;
-            $index++;
+        }
+        if(count($sub_array)>0){
+            array_push($special_offer,$sub_array);
+            $sub_array = array();
         }
 
         // constructing special deal data
         $special_deal = array();
         $count1 = 0;
-        $index1 = 1;
         foreach($dproducts as $product){
             array_push($sub_array,$product);
             if($count1 == 2){
-                $count1 = 0;
+                $count1 = -1;
                 array_push($special_deal,$sub_array);
                 $sub_array = array();
-            }elseif($index1 == count($products)){
-                array_push($special_deal,$sub_array);
             }
 
             $count1++;
-            $index1++;
+        }
+        if(count($sub_array)>0){
+            array_push($special_deal,$sub_array);
+            $sub_array = array();
         }
 
         $skip_category_one = Category::skip(1)->first();

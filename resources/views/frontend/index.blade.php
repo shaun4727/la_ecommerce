@@ -32,6 +32,18 @@ Online Shop
                   <div class="products special-product">
 
                     @foreach($sproducts as $product)
+                    @php
+                        $review = App\Models\Review::groupBy('product_id')
+                                ->select('product_id',DB::raw('AVG(rating) as rating'))
+                                ->where('product_id',$product->id)
+                                ->first();
+
+                        if(isset($review)){
+                            $rating = intval($review->rating);
+                        }else{
+                            $rating = 0;
+                        }
+                    @endphp
                     <div class="product">
                       <div class="product-micro">
                         <div class="row product-micro-row">
@@ -47,7 +59,16 @@ Online Shop
                           <div class="col col-xs-7">
                             <div class="product-info">
                               <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">{{ $product->product_name_en }}</a></h3>
-                              <div class="rating rateit-small"></div>
+                                <div class="">
+                                    @for($i=0; $i<5; $i++)
+                                        <i class="fa-solid fa fa-star"></i>
+                                    @endfor
+                                </div>
+                                <div class="" style="position: relative; top:-18.5px;">
+                                    @for($i=0; $i<$rating; $i++)
+                                        <i class="fa-solid fa fa-star" style="color:yellow;"></i>
+                                    @endfor
+                                </div>
                               <div class="product-price">
                                 @if($product->discount_price != NULL)
                                 <span class="price"> {{ $product->discount_price }} </span>
@@ -97,6 +118,18 @@ Online Shop
                   <div class="products special-product">
 
                     @foreach($dproducts as $product)
+                    @php
+                        $review = App\Models\Review::groupBy('product_id')
+                                ->select('product_id',DB::raw('AVG(rating) as rating'))
+                                ->where('product_id',$product->id)
+                                ->first();
+
+                        if(isset($review)){
+                            $rating = intval($review->rating);
+                        }else{
+                            $rating = 0;
+                        }
+                    @endphp
                     <div class="product">
                       <div class="product-micro">
                         <div class="row product-micro-row">
@@ -112,7 +145,18 @@ Online Shop
                           <div class="col col-xs-7">
                             <div class="product-info">
                               <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">{{ $product->product_name_en }}</a></h3>
-                              <div class="rating rateit-small"></div>
+
+
+                                <div class="">
+                                    @for($i=0; $i<5; $i++)
+                                        <i class="fa-solid fa fa-star"></i>
+                                    @endfor
+                                </div>
+                                <div class="" style="position: relative; top:-18.5px;">
+                                    @for($i=0; $i<$rating; $i++)
+                                        <i class="fa-solid fa fa-star" style="color:yellow;"></i>
+                                    @endfor
+                                </div>
                               <div class="product-price">
                                 @if($product->discount_price != NULL)
                                 <span class="price"> {{ $product->discount_price }} </span>
@@ -270,6 +314,18 @@ Online Shop
 
 
                     @foreach($products as $product)
+                    @php
+                        $review = App\Models\Review::groupBy('product_id')
+                                ->select('product_id',DB::raw('AVG(rating) as rating'))
+                                ->where('product_id',$product->id)
+                                ->first();
+
+                        if(isset($review)){
+                            $rating = intval($review->rating);
+                        }else{
+                            $rating = 0;
+                        }
+                    @endphp
                     <div class="item item-carousel">
                       <div class="products">
                         <div class="product">
@@ -290,7 +346,16 @@ Online Shop
 
                           <div class="product-info text-left">
                             <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">{{ $product->product_name_en }}</a></h3>
-                            <div class="rating rateit-small"></div>
+                            <div class="">
+                                @for($i=0; $i<5; $i++)
+                                    <i class="fa-solid fa fa-star"></i>
+                                @endfor
+                            </div>
+                            <div class="" style="position: relative; top:-18.5px;">
+                                @for($i=0; $i<$rating; $i++)
+                                    <i class="fa-solid fa fa-star" style="color:yellow;"></i>
+                                @endfor
+                            </div>
                             <div class="description"></div>
                             <div class="product-price">
                                 @if($product->discount_price != NULL)
@@ -358,6 +423,18 @@ Online Shop
                   <div class="owl-carousel home-owl-carousel custom-carousel owl-theme">
                     @foreach($products as $product)
                     @if($product->category_id == $category->id)
+                    @php
+                        $review = App\Models\Review::groupBy('product_id')
+                                ->select('product_id',DB::raw('AVG(rating) as rating'))
+                                ->where('product_id',$product->id)
+                                ->first();
+
+                        if(isset($review)){
+                            $rating = intval($review->rating);
+                        }else{
+                            $rating = 0;
+                        }
+                    @endphp
                     <div class="item item-carousel">
                       <div class="products">
                         <div class="product">
@@ -379,7 +456,16 @@ Online Shop
 
                           <div class="product-info text-left">
                             <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }} }}">{{ $product->product_name_en }}</a></h3>
-                            <div class="rating rateit-small"></div>
+                            <div class="">
+                                @for($i=0; $i<5; $i++)
+                                    <i class="fa-solid fa fa-star"></i>
+                                @endfor
+                            </div>
+                            <div class="" style="position: relative; top:-18.5px;">
+                                @for($i=0; $i<$rating; $i++)
+                                    <i class="fa-solid fa fa-star" style="color:yellow;"></i>
+                                @endfor
+                            </div>
                             <div class="description"></div>
                             <div class="product-price">
                                 @if($product->discount_price != NULL)
@@ -461,6 +547,18 @@ Online Shop
             <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
                 @foreach($products as $product)
                 @if($product->featured == 1)
+                @php
+                    $review = App\Models\Review::groupBy('product_id')
+                            ->select('product_id',DB::raw('AVG(rating) as rating'))
+                            ->where('product_id',$product->id)
+                            ->first();
+
+                    if(isset($review)){
+                        $rating = intval($review->rating);
+                    }else{
+                        $rating = 0;
+                    }
+                @endphp
               <div class="item item-carousel">
                 <div class="products">
                   <div class="product">
@@ -482,7 +580,16 @@ Online Shop
 
                     <div class="product-info text-left">
                       <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }} }}">{{ $product->product_name_en }}</a></h3>
-                      <div class="rating rateit-small"></div>
+                      <div class="">
+                        @for($i=0; $i<5; $i++)
+                            <i class="fa-solid fa fa-star"></i>
+                        @endfor
+                    </div>
+                    <div class="" style="position: relative; top:-18.5px;">
+                        @for($i=0; $i<$rating; $i++)
+                            <i class="fa-solid fa fa-star" style="color:yellow;"></i>
+                        @endfor
+                    </div>
                       <div class="description"></div>
                       <div class="product-price">
                         @if($product->discount_price != NULL)
@@ -528,6 +635,18 @@ Online Shop
             <h3 class="section-title">Electronics products</h3>
             <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
                 @foreach($skip_product_one as $product)
+                @php
+                    $review = App\Models\Review::groupBy('product_id')
+                            ->select('product_id',DB::raw('AVG(rating) as rating'))
+                            ->where('product_id',$product->id)
+                            ->first();
+
+                    if(isset($review)){
+                        $rating = intval($review->rating);
+                    }else{
+                        $rating = 0;
+                    }
+                @endphp
 
               <div class="item item-carousel">
                 <div class="products">
@@ -550,7 +669,16 @@ Online Shop
 
                     <div class="product-info text-left">
                       <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }} }}">{{ $product->product_name_en }}</a></h3>
-                      <div class="rating rateit-small"></div>
+                      <div class="">
+                        @for($i=0; $i<5; $i++)
+                            <i class="fa-solid fa fa-star"></i>
+                        @endfor
+                    </div>
+                    <div class="" style="position: relative; top:-18.5px;">
+                        @for($i=0; $i<$rating; $i++)
+                            <i class="fa-solid fa fa-star" style="color:yellow;"></i>
+                        @endfor
+                    </div>
                       <div class="description"></div>
                       <div class="product-price">
                         @if($product->discount_price != NULL)
