@@ -181,26 +181,13 @@ class IndexController extends Controller
     public function tagWiseProduct($tag){
         //$products = DB::SELECT("SELECT * FROM PRODUCTS WHERE FIND_IN_SET('".$tag."',product_tags_en) ORDER BY selling_price ASC");
 
-        // $collect = collect($products);
-
-        // $page = 1;
-        // $size = 10;
-
-        // return $paginationData = new LengthAwarePaginator(
-        //     $collect->forPage($page, $size),
-        //     $collect->count(),
-        //     $size,
-        //     $page
-        // );
-
-
-        $products = Product::whereRaw("FIND_IN_SET('".$tag."',product_tags_en)")->orderBy('selling_price','asc')->paginate(10);
+        $products = Product::whereRaw("FIND_IN_SET('".$tag."',product_tags_en)")->orderBy('discount_price','asc')->paginate(10);
         // $products = Product::where('status',1)->paginate(10);
 
         $categories = Category::orderBy('category_name_en','ASC')->get();
         $orderBy = "Lowest first";
 
-        return view('frontend.tags.tags_view',compact('products','categories','orderBy'));
+        return view('frontend.tags.tags_view',compact('products','categories','orderBy','tag'));
     }
 
     public function tagWiseProductOrderBy($tag,$orderBy="Lowest first"){
@@ -222,7 +209,7 @@ class IndexController extends Controller
 
         $categories = Category::orderBy('category_name_en','ASC')->get();
 
-        return view('frontend.tags.tags_view',compact('products','categories','orderBy'));
+        return view('frontend.tags.tags_view',compact('products','categories','orderBy','tag'));
     }
 
     public function subCatWiseProduct($sub_cat_id,$slug){
@@ -246,7 +233,7 @@ class IndexController extends Controller
         $field = '';
         if($orderBy === 'Lowest first'){
             $order = 'ASC';
-            $field = 'selling_price';
+            $field = 'discount_price';
         }
         else if($orderBy === 'A to Z'){
             $order = 'ASC';
@@ -254,7 +241,7 @@ class IndexController extends Controller
         }
         else{
             $order = 'DESC';
-            $field = 'selling_price';
+            $field = 'discount_price';
         }
         $products = Product::where('status',1)->where('childSubcategory_id',$child_sub_cat_id)->orderBy($field,$order)->paginate(10);
 
