@@ -3,6 +3,19 @@
     <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-ss">
         @foreach($products as $product)
         @if($product->hot_deals == 1)
+
+        @php
+            $review = App\Models\Review::groupBy('product_id')
+                    ->select('product_id',DB::raw('AVG(rating) as rating'))
+                    ->where('product_id',$product->id)
+                    ->first();
+
+            if(isset($review)){
+                $rating = intval($review->rating);
+            }else{
+                $rating = 0;
+            }
+        @endphp
       <div class="item">
         <div class="products">
           <div class="hot-deal-wrapper">
@@ -32,7 +45,16 @@
 
           <div class="product-info text-left m-t-20">
             <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">{{ $product->product_name_en }}</a></h3>
-            <div class="rating rateit-small"></div>
+            <div class="">
+                @for($i=0; $i<5; $i++)
+                    <i class="fa-solid fa fa-star"></i>
+                @endfor
+            </div>
+            <div class="" style="position: relative; top:-18.5px;">
+                @for($i=0; $i<$rating; $i++)
+                    <i class="fa-solid fa fa-star" style="color:yellow;"></i>
+                @endfor
+            </div>
             <div class="product-price">
                 @if($product->discount_price != NULL)
                 <span class="price"> ${{ $product->discount_price }} </span>
